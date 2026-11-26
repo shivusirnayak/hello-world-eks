@@ -3,13 +3,13 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCOUNT_ID = '194398118151'
+        AWS_ACCOUNT_ID = '033781183938'
         AWS_REGION     = 'eu-west-1'
 
         ECR_REPOSITORY = 'hello-world'
-        EKS_CLUSTER    = 'REPLACE_WITH_YOUR_EKS_CLUSTER_NAME'
+        EKS_CLUSTER    = 'test-cluster'
 
-        NAMESPACE      = 'hello-world'
+        NAMESPACE      = 'test'
         APP_NAME       = 'hello-world'
     }
 
