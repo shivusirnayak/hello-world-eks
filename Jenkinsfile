@@ -82,21 +82,23 @@ pipeline {
             }
         }
 
-        stage('Connect to EKS') {
-            steps {
-                sh '''
-                    aws eks update-kubeconfig \
-                      --region "$AWS_REGION" \
-                      --name "$EKS_CLUSTER"
+        
+stage('Connect to EKS') {
+    steps {
+        sh '''
+            aws eks update-kubeconfig \
+              --region ${AWS_REGION} \
+              --name ${EKS_CLUSTER}
 
-                    echo "Current Kubernetes context:"
-                    kubectl config current-context
+            echo "Kubernetes context:"
+            kubectl config current-context
 
-                    echo "Cluster nodes:"
-                    kubectl get nodes
-                '''
-            }
-        }
+            echo "Checking namespace access:"
+            kubectl get namespace ${NAMESPACE}
+        '''
+    }
+}
+
 
         stage('Create Namespace') {
             steps {
