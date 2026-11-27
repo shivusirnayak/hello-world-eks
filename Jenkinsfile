@@ -99,16 +99,6 @@ stage('Connect to EKS') {
     }
 }
 
-
-        stage('Create Namespace') {
-            steps {
-                sh '''
-                    kubectl create namespace "$NAMESPACE" \
-                      --dry-run=client -o yaml | kubectl apply -f -
-                '''
-            }
-        }
-
         stage('Deploy Application') {
             steps {
                 sh '''
